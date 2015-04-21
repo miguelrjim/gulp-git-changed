@@ -1,13 +1,13 @@
 {
-  "name": "gulp-<%= pluginName %>",
-  "version": "0.0.0",
-  "description": "",
+  "name": "gulp-git-changed",
+  "version": "0.0.1",
+  "description": "Filter files by only those changed between the last commit and HEAD",
   "license": "MIT",
-  "repository": "<%= githubUsername %>/gulp-<%= pluginName %>",
+  "repository": "miguelrjim/gulp-git-changed",
   "author": {
-    "name": "<%= name %>",
-    "email": "<%= email %>",
-    "url": "https://github.com/<%= githubUsername %>"
+    "name": "Miguel Jimenez",
+    "email": "miguel.ricardo.jimenez.gomez@gmail.com",
+    "url": "https://github.com/miguelrim"
   },
   "engines": {
     "node": ">=0.10.0"

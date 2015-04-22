@@ -50,7 +50,6 @@ function gitFilter(options) {
 function updateHash(file) {
 	// Updating hash file to match HEAD
 	execSync('git rev-parse HEAD > ' + file);
-	cb();
 }
 
 module.exports = gitFilter;

@@ -9,7 +9,7 @@ function gitFilter(options) {
 	var filesChanged = [];
 
 	if (!options.src) {
-		throw new gutil.PluginError('gulp-<%= pluginName %>', '`src` required');
+		throw new gutil.PluginError('gulp-git-changed', '`src` required');
 	}
 
 	// Read hash file and get files changed between that commit and HEAD in
@@ -33,7 +33,7 @@ function gitFilter(options) {
 			}
 
 			if (file.isStream()) {
-				cb(new gutil.PluginError('gulp-<%= pluginName %>', 'Streaming not supported'));
+				cb(new gutil.PluginError('gulp-git-changed', 'Streaming not supported'));
 				return;
 			}
 

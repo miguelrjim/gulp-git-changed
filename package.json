@@ -1,6 +1,6 @@
 {
   "name": "gulp-git-changed",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Filter files by only those changed between the last commit and HEAD",
   "license": "MIT",
   "repository": {

@@ -47,7 +47,7 @@ function gitFilter(options) {
 	);
 };
 
-function udpateHash(file) {
+function updateHash(file) {
 	// Updating hash file to match HEAD
 	execSync('git rev-parse HEAD > ' + file);
 	cb();

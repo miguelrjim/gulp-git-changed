@@ -3,7 +3,10 @@
   "version": "0.0.1",
   "description": "Filter files by only those changed between the last commit and HEAD",
   "license": "MIT",
-  "repository": "miguelrjim/gulp-git-changed",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/miguelrjim/gulp-git-changed.git"
+  },
   "author": {
     "name": "Miguel Jimenez",
     "email": "miguel.ricardo.jimenez.gomez@gmail.com",
@@ -12,11 +15,12 @@
   "engines": {
     "node": ">=0.10.0"
   },
-  "scripts": {
-    "test": "mocha"
-  },
+  "main": "index.js",
   "files": [
-    "index.js"
+    "index.js",
+    "package.json",
+    "README.md",
+    "LICENSE.md"
   ],
   "keywords": [
     "gulpplugin"
@@ -24,8 +28,5 @@
   "dependencies": {
     "gulp-util": "^3.0.1",
     "through2": "^0.6.3"
-  },
-  "devDependencies": {
-    "mocha": "*"
   }
 }

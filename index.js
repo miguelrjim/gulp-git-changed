@@ -7,6 +7,7 @@ var fs = require('fs');
 function gitFilter(options) {
 	var hashFile = options.hashFile || 'hash-file';
 	var filesChanged = [];
+	var fileExists = false;
 
 	if (!options.src) {
 		throw new gutil.PluginError('gulp-git-changed', '`src` required');
@@ -15,6 +16,7 @@ function gitFilter(options) {
 	// Read hash file and get files changed between that commit and HEAD in
 	// the specified directory
 	if(fs.existsSync(hashFile)) {
+		fileExists = true;
 		var lastHash = fs.readFileSync(hashFile, {encoding: 'utf8'});
 		var t=lastHash.indexOf("\n");
 		if(t != -1)
@@ -27,19 +29,9 @@ function gitFilter(options) {
 
 	return through.obj(
 		function (file, enc, cb) {
-			if (file.isNull()) {
-				cb(null, file);
-				return;
-			}
-
-			if (file.isStream()) {
-				cb(new gutil.PluginError('gulp-git-changed', 'Streaming not supported'));
-				return;
-			}
-
 			// Add file to the stream only if its in the array of changed files
 			// or there was no hash to begin with
-			if (filesChanged.length == 0 || filesChanged.indexOf(file.relative) != -1)
+			if (!fileExists || filesChanged.indexOf(file.path.substr(process.cwd().length+1)) != -1)
 				this.push(file);
 
 			cb();

@@ -4,6 +4,8 @@ var through = require('through2');
 var execSync = require('child_process').execSync;
 var fs = require('fs');
 
+var cacheResults = {};
+
 function gitFilter(options) {
 	var hashFile = options.hashFile || 'hash-file';
 	var filesChanged = [];
@@ -15,7 +17,10 @@ function gitFilter(options) {
 
 	// Read hash file and get files changed between that commit and HEAD in
 	// the specified directory
-	if(fs.existsSync(hashFile)) {
+	var t = cacheResults[options.src];
+	if(t)
+		filesChanged = t;
+	else if(fs.existsSync(hashFile)) {
 		fileExists = true;
 		var lastHash = fs.readFileSync(hashFile, {encoding: 'utf8'});
 		var t=lastHash.indexOf("\n");
@@ -25,6 +30,7 @@ function gitFilter(options) {
 		filesChanged = execSync(command, {encoding: 'utf8'});
 		filesChanged = filesChanged.split("\n");
 		filesChanged.pop();
+		cacheResults[options.src] = filesChanged;
 	}
 
 	return through.obj(

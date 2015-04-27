@@ -18,8 +18,10 @@ function gitFilter(options) {
 	// Read hash file and get files changed between that commit and HEAD in
 	// the specified directory
 	var t = cacheResults[options.src];
-	if(t)
+	if(t) {
 		filesChanged = t;
+		fileExists = true;
+	}
 	else if(fs.existsSync(hashFile)) {
 		fileExists = true;
 		var lastHash = fs.readFileSync(hashFile, {encoding: 'utf8'});
